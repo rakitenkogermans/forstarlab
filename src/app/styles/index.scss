@@ -1,0 +1,26 @@
+@import "reset";
+@import "./variables/global";
+@import "./themes/light";
+@import "./themes/dark";
+
+html {
+    font-size: 62.5%;
+
+    /* 62.5% of the base size of 16px = 10px. */
+}
+
+body {
+    font: var(--font-m);
+
+    /* reset 10*1.6 = 16px, to make sure you do not get any 10px around */
+}
+
+.app {
+    background: var(--background-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+.content-page {
+    display: flex;
+}

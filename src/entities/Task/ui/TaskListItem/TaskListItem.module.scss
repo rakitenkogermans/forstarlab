@@ -1,0 +1,43 @@
+.TaskListItem {
+  width: 100%;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 1.6rem;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.task_low {
+    background-color: var(--priority-low);
+  }
+
+  &.task_medium {
+    background-color: var(--priority-medium);
+  }
+
+  &.task_high {
+    background-color: var(--priority-high);
+  }
+
+  .task_checkbox {
+    margin-right: 16px;
+    cursor: pointer;
+  }
+
+  .task_details {
+    flex-grow: 1;
+    color: var(--task-text);
+
+    .task_description {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .task_date {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  }
+}
