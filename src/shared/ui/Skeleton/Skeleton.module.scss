@@ -1,0 +1,17 @@
+.Skeleton {
+    background-color: var(--skeleton-base);
+    animation: pulse 1.5s infinite;
+    border-radius: 1rem;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}

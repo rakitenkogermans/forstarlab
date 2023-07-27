@@ -1,10 +1,12 @@
 import { observer } from 'mobx-react-lite';
 
+import { TaskListSkeleton } from '@/entities/Task/ui/TaskList/TaskList.skeleton';
 import { TaskListItem } from '@/entities/Task/ui/TaskListItem/TaskListItem';
+import CloseIcon from '@/shared/assets/icons/close-20-20.svg';
 import DeleteIcon from '@/shared/assets/icons/delete-20-20.svg';
 import DoneIcon from '@/shared/assets/icons/done-20-20.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import taskStore from '@/shared/lib/store/taskStore';
+import { useStores } from '@/shared/lib/store/rootStore';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button';
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
@@ -17,6 +19,7 @@ interface TaskListProps {
 
 const TaskList = observer((props: TaskListProps) => {
     const { className } = props;
+    const { taskStore } = useStores();
 
     const onCompleteChange = (id: string) => {
         return () => {
@@ -29,6 +32,22 @@ const TaskList = observer((props: TaskListProps) => {
             taskStore.deleteTask(id);
         };
     };
+
+    if (taskStore.isLoading) {
+        return (
+            <VStack
+                max
+                gap={'8'}
+            >
+                <TaskListSkeleton />
+                <TaskListSkeleton />
+                <TaskListSkeleton />
+                <TaskListSkeleton />
+                <TaskListSkeleton />
+                <TaskListSkeleton />
+            </VStack>
+        );
+    }
 
     return (
         <ul className={classNames(cls.TaskList, {}, [className])}>
@@ -52,14 +71,13 @@ const TaskList = observer((props: TaskListProps) => {
                                     size={ButtonSize.L}
                                     className="task_checkbox"
                                 >
-                                    <DoneIcon />
+                                    {task.completed ? <CloseIcon /> : <DoneIcon />}
                                 </Button>
                                 <Button
                                     theme={ButtonTheme.DELETE}
                                     onClick={onDelete(task.id)}
                                     square
                                     size={ButtonSize.L}
-                                    className="task_checkbox"
                                 >
                                     <DeleteIcon />
                                 </Button>

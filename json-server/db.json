@@ -1,0 +1,90 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "description": "Task 1",
+      "completed": false,
+      "dateAdded": "2023-07-21T10:46:29.194Z",
+      "priority": "low",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "description": "Task 2",
+      "completed": true,
+      "dateAdded": "2023-07-24T10:46:29.194Z",
+      "priority": "low",
+      "userId": "1"
+    },
+    {
+      "id": "3",
+      "description": "Task 3",
+      "completed": true,
+      "dateAdded": "2023-07-25T10:46:29.194Z",
+      "priority": "high",
+      "userId": "1"
+    },
+    {
+      "id": "4",
+      "description": "Task 4",
+      "completed": false,
+      "dateAdded": "2023-07-25T10:46:29.194Z",
+      "priority": "high",
+      "userId": "1"
+    },
+    {
+      "id": "5",
+      "description": "Task 5",
+      "completed": false,
+      "dateAdded": "2023-07-26T10:46:29.194Z",
+      "priority": "medium",
+      "userId": "1"
+    },
+    {
+      "id": "6",
+      "description": "Task 6",
+      "completed": false,
+      "dateAdded": "2023-07-26T10:46:29.194Z",
+      "priority": "medium",
+      "userId": "1"
+    },
+    {
+      "id": "7",
+      "description": "Task 7",
+      "completed": true,
+      "dateAdded": "2023-07-26T10:46:29.194Z",
+      "priority": "high",
+      "userId": "1"
+    },
+    {
+      "id": "8",
+      "description": "Task 8",
+      "completed": false,
+      "dateAdded": "2023-07-26T10:46:29.194Z",
+      "priority": "high",
+      "userId": "1"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "123"
+    },
+    {
+      "id": "2",
+      "username": "user",
+      "password": "123"
+    },
+    {
+      "id": "3",
+      "username": "manager",
+      "password": "123"
+    },
+    {
+      "id": "4",
+      "username": "testuser",
+      "password": "123"
+    }
+  ]
+}

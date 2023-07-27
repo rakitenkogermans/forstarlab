@@ -59,6 +59,7 @@ const Input = memo((props: InputProps) => {
             name={name}
             className={classNames(cls.Input, mods, [className])}
             readOnly={readonly}
+            placeholder={placeholder}
             {...otherProps}
         />
     );

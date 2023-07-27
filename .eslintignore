@@ -5,3 +5,4 @@ vite.config.ts
 .eslintrc.js
 cypress
 cypress.config.ts
+json-server
