@@ -1,45 +1,28 @@
-import { useMemo } from 'react';
-
+import { observer } from 'mobx-react-lite';
 import { Navigate } from 'react-router-dom';
 
-import { getRouteForbidden, getRouteTasks } from '@/shared/const/router';
+import { getRouteLogin } from '@/shared/const/router';
+import { useStores } from '@/shared/lib/store/rootStore';
 
 interface RequireAuthProps {
     children: JSX.Element;
-    roles?: any[];
 }
 
-const RequireAuth = ({ children, roles }: RequireAuthProps) => {
-    const isAuth = 1;
-    const userRoles = 1;
+const RequireAuth = observer(({ children }: RequireAuthProps) => {
+    const {
+        userStore: { loggedIn },
+    } = useStores();
 
-    const hasRequiredRoles = useMemo(() => {
-        if (!roles) {
-            return true;
-        }
-
-        // return roles.some((requiredRole) => userRoles?.includes(requiredRole));
-    }, [roles]);
-
-    if (!isAuth) {
+    if (!loggedIn) {
         return (
             <Navigate
-                to={getRouteTasks()}
-                replace={true}
-            />
-        );
-    }
-
-    if (!hasRequiredRoles) {
-        return (
-            <Navigate
-                to={getRouteForbidden()}
+                to={getRouteLogin()}
                 replace={true}
             />
         );
     }
 
     return children;
-};
+});
 
 export { RequireAuth };

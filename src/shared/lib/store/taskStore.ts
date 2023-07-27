@@ -36,7 +36,11 @@ class TaskStore {
     async loadTasks() {
         this.isLoading = true;
         try {
-            const { data } = await $api.get<Task[]>('/tasks');
+            const { data } = await $api.get<Task[]>('/tasks', {
+                params: {
+                    userId: this.rootStore.userStore.id,
+                },
+            });
             this.isLoading = false;
             this.tasks = data;
         } catch (err) {

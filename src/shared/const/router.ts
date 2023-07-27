@@ -1,4 +1,6 @@
 export enum AppRoutes {
+    WELCOME = 'welcome',
+    LOGIN = 'login',
     TASKS = 'tasks',
     FORBIDDEN = 'forbidden',
 
@@ -6,6 +8,8 @@ export enum AppRoutes {
     NOT_FOUND = 'not_found',
 }
 
-export const getRouteTasks = () => '/';
+export const getRouteWelcome = () => '/';
+export const getRouteLogin = () => '/login';
+export const getRouteTasks = () => '/tasks';
 export const getRouteForbidden = () => '/forbidden';
 export const getRouteNotFound = () => '*';

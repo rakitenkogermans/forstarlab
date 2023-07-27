@@ -1,5 +1,5 @@
 .AppLink {
-    color: var(--text-primary);
+    color: var(--navbar-text);
     transition: opacity 0.3s ease-in-out;
 
     &:hover {
@@ -10,9 +10,9 @@
 }
 
 .primary {
-    color: var(--text-primary);
+    color: var(--navbar-text);
 }
 
 .secondary {
-    color: var(--text-secondary);
+    color: var(--secondary-color);
 }
