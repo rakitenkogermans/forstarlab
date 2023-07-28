@@ -31,6 +31,12 @@
     border: none;
 }
 
+.edit {
+    background: var(--edit-color);
+    color: var(--button-text);
+    border: none;
+}
+
 .square {
     padding: 0;
 }

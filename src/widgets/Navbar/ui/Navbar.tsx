@@ -1,7 +1,12 @@
 import { observer } from 'mobx-react-lite';
 
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
-import { getRouteLogin, getRouteWelcome } from '@/shared/const/router';
+import {
+    getRouteLogin,
+    getRouteTaskCreate,
+    getRouteTasks,
+    getRouteWelcome,
+} from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useStores } from '@/shared/lib/store/rootStore';
 import { AppLink } from '@/shared/ui/AppLink';
@@ -31,13 +36,17 @@ const Navbar = observer(({ className = '' }: NavbarProps) => {
                     <AppLink to={getRouteLogin()}>Login</AppLink>
                 )}
                 {userStore.loggedIn && (
-                    <Button
-                        onClick={() => {
-                            userStore.logout();
-                        }}
-                    >
-                        Logout
-                    </Button>
+                    <>
+                        <AppLink to={getRouteTasks()}>Tasks</AppLink>
+                        <AppLink to={getRouteTaskCreate()}>Add Task</AppLink>
+                        <Button
+                            onClick={() => {
+                                userStore.logout();
+                            }}
+                        >
+                            Logout
+                        </Button>
+                    </>
                 )}
             </HStack>
         </header>

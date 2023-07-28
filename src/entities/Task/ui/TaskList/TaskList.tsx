@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { useNavigate } from 'react-router-dom';
 
 import { TaskFilterField } from '@/entities/Task/model/consts/taskConsts';
 import { TaskListSkeleton } from '@/entities/Task/ui/TaskList/TaskList.skeleton';
@@ -6,6 +7,8 @@ import { TaskListItem } from '@/entities/Task/ui/TaskListItem/TaskListItem';
 import CloseIcon from '@/shared/assets/icons/close-20-20.svg';
 import DeleteIcon from '@/shared/assets/icons/delete-20-20.svg';
 import DoneIcon from '@/shared/assets/icons/done-20-20.svg';
+import EditIcon from '@/shared/assets/icons/edit-20-20.svg';
+import { getRouteTaskEdit } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useStores } from '@/shared/lib/store/rootStore';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button';
@@ -21,6 +24,7 @@ interface TaskListProps {
 const TaskList = observer((props: TaskListProps) => {
     const { className } = props;
     const { taskStore } = useStores();
+    const navigate = useNavigate();
 
     const onCompleteChange = (id: string) => {
         return () => {
@@ -32,6 +36,10 @@ const TaskList = observer((props: TaskListProps) => {
         return () => {
             taskStore.deleteTask(id);
         };
+    };
+
+    const onEdit = (id: string) => () => {
+        navigate(getRouteTaskEdit(id));
     };
 
     if (taskStore.isLoading) {
@@ -78,6 +86,14 @@ const TaskList = observer((props: TaskListProps) => {
                                     className="task_checkbox"
                                 >
                                     {task.completed ? <CloseIcon /> : <DoneIcon />}
+                                </Button>
+                                <Button
+                                    theme={ButtonTheme.EDIT}
+                                    onClick={onEdit(task.id)}
+                                    square
+                                    size={ButtonSize.L}
+                                >
+                                    <EditIcon />
                                 </Button>
                                 <Button
                                     theme={ButtonTheme.DELETE}

@@ -16,14 +16,21 @@ export interface Task {
     id: string;
     description: string;
     completed: boolean;
-    dateAdded: Date;
+    dateAdded: string;
     priority: TaskPriority;
 }
 
 class TaskStore {
     tasks: Task[] = [];
+    newTask: Omit<Task, 'id'> = {
+        completed: false,
+        dateAdded: new Date().toJSON(),
+        description: '',
+        priority: TaskPriority.LOW,
+    };
 
     isLoading = false;
+    error = '';
 
     sort: TaskSortField = TaskSortField.DATE;
     order: SortOrder = 'asc';
@@ -52,8 +59,30 @@ class TaskStore {
         }
     }
 
-    addTask(task: Task) {
-        this.tasks.push(task);
+    async addTask(task: Omit<Task, 'id'>, cb: () => void) {
+        this.isLoading = true;
+
+        try {
+            const { data } = await $api.post<Task>(`/tasks`, {
+                userId: this.rootStore.userStore.id,
+                ...task,
+            });
+            if (data) {
+                this.error = '';
+                this.newTask = {
+                    completed: false,
+                    dateAdded: new Date().toJSON(),
+                    description: '',
+                    priority: TaskPriority.LOW,
+                };
+                this.isLoading = false;
+                cb();
+            }
+        } catch (err) {
+            console.log(err);
+            this.isLoading = false;
+            this.error = 'Something went wrong';
+        }
     }
 
     async deleteTask(taskId: string) {
@@ -68,8 +97,6 @@ class TaskStore {
             this.isLoading = false;
             console.log(err);
         }
-
-        // this.tasks = this.tasks.filter((task) => task.id !== taskId);
     }
 
     editTask(editedTask: Task) {
@@ -95,10 +122,6 @@ class TaskStore {
             this.isLoading = false;
             console.log(err);
         }
-
-        // this.tasks = this.tasks.map((task) =>
-        //     task.id === taskId ? { ...task, completed: !task.completed } : task,
-        // );
     }
 
     filterTasksByStatus(status: boolean) {

@@ -14,7 +14,7 @@ interface LoginFormProps {
     className?: string;
 }
 
-const LoginForm = observer((props: LoginFormProps) => {
+const TaskEditForm = observer((props: LoginFormProps) => {
     const { className } = props;
 
     const { userStore } = useStores();
@@ -50,7 +50,7 @@ const LoginForm = observer((props: LoginFormProps) => {
             <Text title={'Authorization form'} />
             {userStore.error && (
                 <Text
-                    text={userStore.error}
+                    text={'Invalid username or password'}
                     theme={TextTheme.ERROR}
                 />
             )}
@@ -85,4 +85,4 @@ const LoginForm = observer((props: LoginFormProps) => {
     );
 });
 
-export { LoginForm };
+export { TaskEditForm };

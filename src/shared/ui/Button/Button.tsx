@@ -6,6 +6,7 @@ import { classNames, type Mods } from '../../lib/classNames/classNames';
 export enum ButtonTheme {
     CLEAR = 'clear',
     DELETE = 'delete',
+    EDIT = 'edit',
     BACKGROUND = 'background',
     BACKGROUND_INVERTED = 'backgroundInverted',
 }

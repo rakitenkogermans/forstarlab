@@ -8,10 +8,14 @@ import {
     getRouteNotFound,
     getRouteWelcome,
     getRouteLogin,
+    getRouteTaskEdit,
+    getRouteTaskCreate,
 } from '@/shared/const/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import { WelcomePage } from '@/pages/WelcomePage';
 import { LoginPage } from '@/pages/LoginPage';
+import { TaskEditPage } from '@/pages/TaskEditPage';
+import { TaskCreatePage } from '@/pages/TaskCreatePage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.WELCOME]: {
@@ -25,6 +29,16 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.TASKS]: {
         path: getRouteTasks(),
         element: <TasksPage />,
+        authOnly: true,
+    },
+    [AppRoutes.TASK_EDIT]: {
+        path: getRouteTaskEdit(':id'),
+        element: <TaskEditPage />,
+        authOnly: true,
+    },
+    [AppRoutes.TASK_CREATE]: {
+        path: getRouteTaskCreate(),
+        element: <TaskCreatePage />,
         authOnly: true,
     },
     [AppRoutes.FORBIDDEN]: {
