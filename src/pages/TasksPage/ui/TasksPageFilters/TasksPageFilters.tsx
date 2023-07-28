@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { observer } from 'mobx-react-lite';
 
-import { TaskFilterField, TaskSortField } from '@/entities/Task/model/consts/taskConsts';
+import { TaskFilterField, TaskSortField } from '@/entities/Task';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useStores } from '@/shared/lib/store/rootStore';
 import { type SortOrder } from '@/shared/types/sort';
@@ -35,7 +35,6 @@ const TasksPageFilters = observer((props: TasksPageFiltersProps) => {
 
     const onChangeFilter = (newFilter: TaskFilterField) => {
         taskStore.filter = newFilter;
-        // onChangeSort(taskStore.sort);
     };
 
     const orderOptions = useMemo<Array<SelectOption<SortOrder>>>(

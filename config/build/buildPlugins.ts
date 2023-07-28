@@ -49,18 +49,7 @@ export const buildPlugins = ({
                 chunkFilename: 'css/[name].[contenthash:8].css',
             }),
         );
-        plugins.push(
-            new CopyPlugin({
-                patterns: [
-                    {
-                        from: paths.publicLocales,
-                        to: paths.buildLocales,
-                    },
-                ],
-            }),
-        );
     }
 
-    // @ts-ignore
     return plugins;
 };

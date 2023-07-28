@@ -26,12 +26,6 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
 
     const svgLoader = buildSvgLoader();
 
-    // const typescriptLoader = {
-    //     test: /\.tsx?$/,
-    //     use: 'ts-loader',
-    //     exclude: /node_modules/,
-    // };
-
     const cssLoader = buildCssLoader(isDev);
 
     return [fileLoader, svgLoader, cssLoader, codeBabelLoader, tsxCodeBabelLoader];

@@ -10,7 +10,7 @@ import { routeConfig } from '../config/routeConfig';
 
 const AppRouter = () => {
     const router = useMemo(() => {
-        return Object.values(routeConfig).map(({ element, path, authOnly, roles }) => {
+        return Object.values(routeConfig).map(({ element, path, authOnly }) => {
             const el = <Suspense fallback={<PageLoader />}>{element}</Suspense>;
 
             return (

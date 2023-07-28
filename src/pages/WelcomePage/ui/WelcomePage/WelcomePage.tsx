@@ -17,7 +17,10 @@ const WelcomePage = memo((props: WelcomePageProps) => {
     const navigate = useNavigate();
 
     return (
-        <div className={classNames(cls.WelcomePage, {}, [className])}>
+        <div
+            className={classNames(cls.WelcomePage, {}, [className])}
+            data-testid={'WelcomePage'}
+        >
             <h1>Welcome to your To-Do List</h1>
             <p>Stay organized and productive with our simple and intuitive to-do list app.</p>
             <Button

@@ -1,9 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 
-import { TaskFilterField } from '@/entities/Task/model/consts/taskConsts';
-import { TaskListSkeleton } from '@/entities/Task/ui/TaskList/TaskList.skeleton';
-import { TaskListItem } from '@/entities/Task/ui/TaskListItem/TaskListItem';
 import CloseIcon from '@/shared/assets/icons/close-20-20.svg';
 import DeleteIcon from '@/shared/assets/icons/delete-20-20.svg';
 import DoneIcon from '@/shared/assets/icons/done-20-20.svg';
@@ -16,6 +13,9 @@ import { HStack, VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
 
 import cls from './TaskList.module.scss';
+import { TaskListSkeleton } from './TaskList.skeleton';
+import { TaskFilterField } from '../../model/consts/taskConsts';
+import { TaskListItem } from '../TaskListItem/TaskListItem';
 
 interface TaskListProps {
     className?: string;
