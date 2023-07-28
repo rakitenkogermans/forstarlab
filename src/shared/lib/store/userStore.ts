@@ -24,9 +24,38 @@ class UserStore {
         makeAutoObservable(this);
     }
 
-    async loginByUsername(username: string, password: string) {
+    startLoading() {
         this.isLoading = true;
-        this.error = '';
+    }
+
+    stopLoading() {
+        this.isLoading = false;
+    }
+
+    setError(error: string) {
+        this.error = error;
+    }
+
+    setUser(user: User) {
+        this.id = user.id;
+        this.username = user.username;
+        this.loggedIn = true;
+        this.saveUserToLocalStorage(user);
+    }
+
+    saveUserToLocalStorage(user: User) {
+        localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(user));
+    }
+
+    clearUser() {
+        this.loggedIn = false;
+        this.id = '';
+        this.username = '';
+    }
+
+    async loginByUsername(username: string, password: string) {
+        this.startLoading();
+        this.setError('');
         this.loggedIn = false;
 
         try {
@@ -43,15 +72,13 @@ class UserStore {
                 LOCAL_STORAGE_USER_KEY,
                 JSON.stringify({ id: response.data.id, username: response.data.username }),
             );
-            this.error = '';
-            this.isLoading = false;
-            this.loggedIn = true;
-            this.username = response.data.username;
-            this.id = response.data.id;
+            this.setUser(response.data);
+            this.setError('');
+            this.stopLoading();
         } catch (err) {
             console.log(err);
-            this.isLoading = false;
-            this.error = 'Wrong credentials!';
+            this.stopLoading();
+            this.setError('Wrong credentials!');
         }
     }
 
@@ -59,17 +86,13 @@ class UserStore {
         const user = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
         if (user) {
             const parsedUser = JSON.parse(user) as User;
-            this.id = parsedUser.id;
-            this.username = parsedUser.username;
-            this.loggedIn = true;
+            this.setUser(parsedUser);
         }
         this.initialized = true;
     }
 
     logout() {
-        this.loggedIn = false;
-        this.id = '';
-        this.username = '';
+        this.clearUser();
         this.rootStore.taskStore.tasks = [];
         localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
     }
