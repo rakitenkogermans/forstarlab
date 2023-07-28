@@ -1,0 +1,21 @@
+.Wrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+.select {
+    background: none;
+    outline: none;
+    color: var(--paragraph-color);
+    padding: 2px 10px 2px 2px;
+    border: 1px solid var(--primary-color);
+}
+
+.option {
+    color: var(--button-text);
+    background: var(--button-background);
+}
+
+.readonly {
+    opacity: 0.6;
+}

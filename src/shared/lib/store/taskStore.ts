@@ -1,6 +1,8 @@
 import { makeAutoObservable } from 'mobx';
 
+import { TaskFilterField, TaskSortField } from '@/entities/Task/model/consts/taskConsts';
 import { $api } from '@/shared/api/api';
+import { type SortOrder } from '@/shared/types/sort';
 
 import { type RootStore } from './rootStore';
 
@@ -23,9 +25,10 @@ class TaskStore {
 
     isLoading = false;
 
-    sort = '';
+    sort: TaskSortField = TaskSortField.DATE;
+    order: SortOrder = 'asc';
     search = '';
-    completed = '';
+    filter: TaskFilterField = TaskFilterField.ALL;
     rootStore: RootStore;
 
     constructor(rootStore: RootStore) {
@@ -103,12 +106,18 @@ class TaskStore {
     }
 
     sortTasksByDate() {
-        return this.tasks.sort((a, b) => a.dateAdded.getTime() - b.dateAdded.getTime());
+        this.sort = TaskSortField.DATE;
+        this.tasks.sort(
+            (a, b) => new Date(a.dateAdded).getTime() - new Date(b.dateAdded).getTime(),
+        );
+        return this.order === 'asc' ? this.tasks : this.tasks.reverse();
     }
 
     sortTasksByPriority() {
+        this.sort = TaskSortField.PRIORITY;
         const priorityLevels = { low: 1, medium: 2, high: 3 };
-        return this.tasks.sort((a, b) => priorityLevels[a.priority] - priorityLevels[b.priority]);
+        this.tasks.sort((a, b) => priorityLevels[a.priority] - priorityLevels[b.priority]);
+        return this.order === 'asc' ? this.tasks : this.tasks.reverse();
     }
 
     filterTasksByDescription(description: string) {

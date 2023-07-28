@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 
+import { TaskFilterField } from '@/entities/Task/model/consts/taskConsts';
 import { TaskListSkeleton } from '@/entities/Task/ui/TaskList/TaskList.skeleton';
 import { TaskListItem } from '@/entities/Task/ui/TaskListItem/TaskListItem';
 import CloseIcon from '@/shared/assets/icons/close-20-20.svg';
@@ -49,14 +50,19 @@ const TaskList = observer((props: TaskListProps) => {
         );
     }
 
+    const tasksToRender =
+        taskStore.filter === TaskFilterField.ALL
+            ? taskStore.tasks
+            : taskStore.filterTasksByStatus(taskStore.filter === TaskFilterField.COMPLETED);
+
     return (
         <ul className={classNames(cls.TaskList, {}, [className])}>
             <VStack
                 max
                 gap={'8'}
             >
-                {taskStore.tasks.length > 0 ? (
-                    taskStore.tasks.map((task) => {
+                {tasksToRender.length > 0 ? (
+                    tasksToRender.map((task) => {
                         return (
                             <HStack
                                 max
