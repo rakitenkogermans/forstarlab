@@ -27,15 +27,15 @@ const TaskCreateForm = observer((props: LoginFormProps) => {
     };
 
     const onChangeDescription = (value: string) => {
-        taskStore.newTask.description = value;
+        taskStore.newTaskForm.description = value;
     };
 
     const onCreateTask = () => {
-        taskStore.addTask(taskStore.newTask, onRedirect);
+        taskStore.addTask(taskStore.newTaskForm, onRedirect);
     };
 
     const onChangePriority = (newPriority: TaskPriority) => {
-        taskStore.newTask.priority = newPriority;
+        taskStore.newTaskForm.priority = newPriority;
     };
 
     const priorityFieldOptions = useMemo<Array<SelectOption<TaskPriority>>>(
@@ -60,6 +60,7 @@ const TaskCreateForm = observer((props: LoginFormProps) => {
         <VStack
             max
             gap={'16'}
+            className={className}
         >
             <Text title={'Create new task'} />
             {taskStore.error && (
@@ -74,7 +75,7 @@ const TaskCreateForm = observer((props: LoginFormProps) => {
             >
                 <Input
                     onChange={onChangeDescription}
-                    value={taskStore.newTask.description}
+                    value={taskStore.newTaskForm.description}
                     type="text"
                     placeholder={'Type task description'}
                     id={'description'}
@@ -85,7 +86,7 @@ const TaskCreateForm = observer((props: LoginFormProps) => {
                 <Select<TaskPriority>
                     options={priorityFieldOptions}
                     label={'Priority'}
-                    value={taskStore.newTask.priority}
+                    value={taskStore.newTaskForm.priority}
                     onChange={onChangePriority}
                 />
             </HStack>

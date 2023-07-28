@@ -82,19 +82,19 @@
     },
     {
       "userId": "1",
-      "completed": false,
-      "dateAdded": "2023-07-28T12:59:12.845Z",
-      "description": "testtask",
-      "priority": "high",
-      "id": "q0lJ1Jb"
-    },
-    {
-      "userId": "1",
-      "completed": false,
+      "completed": true,
       "dateAdded": "2023-07-28T13:08:58.992Z",
       "description": "test assignment",
       "priority": "medium",
       "id": "FixXVlE"
+    },
+    {
+      "userId": "1",
+      "completed": false,
+      "dateAdded": "2023-07-28T15:57:42.667Z",
+      "description": "It works! YEEAAAA!",
+      "priority": "medium",
+      "id": "D156oAL"
     }
   ],
   "users": [

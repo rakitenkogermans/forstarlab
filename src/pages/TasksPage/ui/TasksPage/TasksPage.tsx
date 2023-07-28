@@ -14,6 +14,7 @@ const TasksPage = observer(() => {
     useEffect(() => {
         taskStore.loadTasks();
     }, [taskStore]);
+
     return (
         <Page data-testid={'TasksPage'}>
             <VStack
