@@ -1,4 +1,4 @@
-# Simple “To-Do List” application using React, Typescript, and Mobx
+# Simple “To-Do List” application using React, Typescript and Mobx
 
 This project contains the source code for the Starlab test assignment application.
 
